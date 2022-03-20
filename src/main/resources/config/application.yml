@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: redis-cache-service
+
+  redis:
+    port: ${REDIS_PORT:6379}
+    host: ${REDIS_HOST:localhost}
+    password: ${REDIS_PASSWORD:test123456}
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${DATABASE_URL:localhost:3306}/${DATABASE_SCHEMA:test}
+    username: ${DATABASE_USER:root}
+    password: ${DATABASE_PASSWORD:test123456}
+
+  jpa:
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: update
