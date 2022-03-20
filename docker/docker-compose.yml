@@ -1,0 +1,30 @@
+version: '3.7'
+
+services:
+  mariadb:
+    image: mariadb:10.6.7
+    hostname: mariadb
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_USER: ${MARIADB_USERNAME}
+      MYSQL_ROOT_PASSWORD: ${MARIADB_PASSWORD}
+      MYSQL_DATABASE: ${MARIADB_DATABASE}
+    networks:
+      - app
+
+  redis:
+    image: redis:6.2.6-alpine
+    hostname: redis
+    ports:
+      - "6379:6379"
+    entrypoint: [ "redis-server", "/usr/local/etc/redis/redis.conf" ]
+    volumes:
+      - ./conf/redis.conf:/usr/local/etc/redis/redis.conf
+    networks:
+      - app
+
+networks:
+  app:
+    name: app
+    driver: bridge
