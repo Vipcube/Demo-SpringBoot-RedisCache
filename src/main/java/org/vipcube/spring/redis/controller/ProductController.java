@@ -36,8 +36,8 @@ public class ProductController {
 		return ResponseEntity.ok( this.service.create( product ) );
 	}
 
-	@PutMapping( value = "", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE )
-	public ResponseEntity<?> update( @RequestBody Product product ){
-		return ResponseEntity.ok( this.service.update( product ) );
+	@PutMapping( value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE )
+	public ResponseEntity<?> update( @PathVariable( "id" ) Long id, @RequestBody Product product ){
+		return ResponseEntity.ok( this.service.update( id, product ) );
 	}
 }
