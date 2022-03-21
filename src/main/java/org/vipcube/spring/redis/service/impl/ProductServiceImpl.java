@@ -41,8 +41,8 @@ public class ProductServiceImpl implements IProductService {
 
 	@CachePut( value = "product", key = "#product.id" )
 	@Override
-	public Product update( Product product ) {
-		Product entity = this.findById( product.getId() );
+	public Product update( Long id, Product product ) {
+		Product entity = this.findById( id );
 		BeanUtils.copyProperties( product, entity, "id" );
 		return this.repository.save( entity );
 	}
